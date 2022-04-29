@@ -3,23 +3,19 @@ import {Link} from 'react-router-dom'
 
 function Header() {
   return (
-    <header>
-      Header
+    <nav className='flex justify-between'>
       <div>
-        Logo
+        <Link to='/'>Countries</Link>
       </div>
-      <ul>
+      <ul className='flex px-5'>
         <li>
-          <Link>Logout</Link>
+          <Link to='/login'>Login</Link>
         </li>
         <li>
-          <Link>Login</Link>
-        </li>
-        <li>
-          <Link>Register</Link>
+          <Link to='/register'>Register</Link>
         </li>
       </ul>
-    </header>
+    </nav>
   )
 }
 

@@ -15,15 +15,16 @@ function App() {
   return (
     <React.Fragment>
       <Router>
-        <Header/>
-        <Routes>
-          <Route path='/' element={<Dashboard />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-        </Routes>  
-        <Footer/>
+        <div className='max-w-full h-screen'>
+          <Header/>
+          <Routes>
+            <Route path='/' element={<Dashboard />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+          </Routes>  
+          <Footer/>         
+        </div>
       </Router>
-      <ToastContainer /> 
     </React.Fragment>
   );
 }
