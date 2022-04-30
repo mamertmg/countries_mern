@@ -1,7 +1,5 @@
 import React from 'react'
 import CountryForm from '../components/CountryForm'
-import CountryList from '../components/CountryList'
-import CountryMap from '../components/CountryMap';
 
 function Dashboard() {
   return (
@@ -14,12 +12,6 @@ function Dashboard() {
             Track all the countries you have visited in your life
           </h2>
           <CountryForm/>
-      </section>
-      <section>
-        <CountryList/>
-      </section>
-      <section>
-        <CountryMap/>
       </section>      
     </React.Fragment>
 
