@@ -1,7 +1,12 @@
 import React from 'react'
 import CountryForm from '../components/CountryForm'
+import CountryList from '../components/CountryList'
+import { useSelector } from 'react-redux'
 
 function Dashboard() {
+
+  const {countries, isError, isSuccess, isLoading, message}= useSelector((state) => state.countries)
+
   return (
     <React.Fragment>
       <section className="flex flex-col md:px-12 px-4 py-0 bg-background items-center">
@@ -9,12 +14,21 @@ function Dashboard() {
             <span className="text-active">Countries</span> 
           </h1>
           <h2 className="text-primary text-2xl font-light mt-6 font-ebas">
-            Track all the countries you have visited in your life
+            Track all your countries visited
           </h2>
           <CountryForm/>
-      </section>      
+      </section>
+      <section className='flex flex-col md:px-12 px-4 py-0 bg-background items-center'>
+        {countries.length > 0 ? 
+          <div>
+            <CountryList countries = {countries} />
+          </div>
+          : (
+            <h3>You have not visited any country</h3>
+          )
+        }
+      </section>    
     </React.Fragment>
-
   )
 }
 

@@ -1,29 +1,31 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
-function CountryCard() {
+function CountryCard(country) {
+    const {name, capital, region, population, flags} = country.country
+
     return (
-        <div className='shadow-md compact side bg-base-100'>
-            <div className='flex-row items-center space-x-4 card-body'>
+        <div className='rounded shadow-md compact side bg-base-100'>
                 <div>
-                    <div>
-                        <div className='rounded-full shadow w-14 h-14'>
-                            <img src="" alt='flag' />
-                        </div>
+                    <div className='w-14 h-14' >
+                        <img src={flags.png} alt='flag' />
                     </div>
                 </div>
-                <div>
-                    <h2 className='font-bold'>Capital:</h2>
-                    <h2 className='font-bold'>Region:</h2>
-                    <h2 className='font-bold'>Population:</h2>
+                <div className='p-2'>
+                    <h1 className='font-bold'>{name}</h1>
+                    <br />
+                    <div className='flex'>
+                        <h2 className='font-bold mr-1'>Capital:</h2>
+                        <h3>{capital}</h3>
+                    </div>
+                    <div className='flex'>
+                        <h2 className='font-bold mr-1'>Region:</h2>  
+                        <h3>{region}</h3>  
+                    </div>
+                    <div className='flex'>
+                        <h2 className='font-bold mr-1   '>Population:</h2>
+                        <h3>{population}</h3>
+                    </div>
                 </div>
-                <br></br>
-                <div className='flex justify-center'>
-                    <Link className='text-base-content text-opacity-40' to="">
-                        Read more
-                    </Link>
-                </div>
-            </div>
         </div>
     )
 }

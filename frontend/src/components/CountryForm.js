@@ -10,7 +10,11 @@ function CountryForm() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    // Get country from API
     dispatch(getCountry(country))
+
+    // Save country in DB
+    
     setCountry('')
   }
 

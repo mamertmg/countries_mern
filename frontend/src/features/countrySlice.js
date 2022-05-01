@@ -76,7 +76,7 @@ export const countrySlice = createSlice({
           .addCase(getCountry.fulfilled, (state, action) => {
             state.isLoading = false
             state.isSuccess = true
-            state.countries = action.payload
+            state.countries.push(action.payload) 
           })
           .addCase(getCountry.rejected, (state, action) => {
             state.isLoading = false
