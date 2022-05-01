@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { useDispatch } from 'react-redux'
-import {getCountry} from '../features/countrySlice'
+import {getCountry, saveCountry} from '../features/countrySlice'
 
 function CountryForm() {
 
@@ -14,7 +14,7 @@ function CountryForm() {
     dispatch(getCountry(country))
 
     // Save country in DB
-    
+    dispatch(saveCountry(country))
     setCountry('')
   }
 

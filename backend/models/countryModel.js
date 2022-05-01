@@ -19,10 +19,10 @@ const CountrySchema = new Schema({
   population: {
     type: Number,
   },
-  flags: {
+  flag: {
     type: String,
   },
-  maps:{
+  map:{
     type: String,
   }
 });

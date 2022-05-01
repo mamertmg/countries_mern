@@ -35,7 +35,6 @@ export const saveCountry = createAsyncThunk(
     }
 )
 
-
 // Get user countries
 export const getAll = createAsyncThunk(
     'country/getAll',

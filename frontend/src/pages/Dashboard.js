@@ -1,11 +1,38 @@
 import React from 'react'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 import CountryForm from '../components/CountryForm'
 import CountryList from '../components/CountryList'
-import { useSelector } from 'react-redux'
+import Spinner from '../components/Spinner'
+import {getAll, reset} from '../features/countrySlice'
 
 function Dashboard() {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-  const {countries, isError, isSuccess, isLoading, message}= useSelector((state) => state.countries)
+  const { user } = useSelector((state) => state.auth)
+  const {countries, isError, isLoading, message}= useSelector((state) => state.countries)
+
+  useEffect(() => {
+    if (isError) {
+      console.log(message)
+    }
+
+    if (!user) {
+      navigate('/login')
+    }
+
+    //dispatch(getAll())
+
+    return () => {
+      dispatch(reset())
+    }
+  }, [user, navigate, isError, message, dispatch])
+
+  if (isLoading) {
+    return <Spinner />
+  }
 
   return (
     <React.Fragment>

@@ -7,6 +7,15 @@ const User = require('../models/userModel')
 // @route   GET /api/countries
 // @access  Private
 const getAll = asyncHandler(async (req, res) => {
+
+  // Get user using the id in the JWT
+  const user = await User.findById(req.user.id)
+
+  if (!user) {
+    res.status(401)
+    throw new Error('User not found')
+  }
+
   const countries = await Country.find({ user: req.user.id })
 
   res.status(200).json(countries)
@@ -16,19 +25,23 @@ const getAll = asyncHandler(async (req, res) => {
 // @route   POST /api/countries
 // @access  Private
 const saveCountry = asyncHandler(async (req, res) => {
-  if (!req.body.text) {
-    res.status(400)
-    throw new Error('Please add a text field')
+
+  // Get user using the id in the JWT
+  const user = await User.findById(req.user.id)
+
+  if (!user) {
+    res.status(401)
+    throw new Error('User not found')
   }
 
   const country = await Country.create({
-
     user: req.user.id,
     name: req.body.name,
     capital: req.body.capital,
     region: req.body.region,
     population: req.body.population,
-    flag: req.body.flag
+    flag: req.body.flag.png,
+    map: req.body.googleMaps
   })
 
   res.status(200).json(country)
@@ -38,11 +51,20 @@ const saveCountry = asyncHandler(async (req, res) => {
 // @route   DELETE /api/countries/:id
 // @access  Private
 const deleteCountry = asyncHandler(async (req, res) => {
+
+  // Get user using the id in the JWT
+  const user = await User.findById(req.user.id)
+
+  if (!user) {
+    res.status(401)
+    throw new Error('User not found')
+  }
+  
   const country = await Country.findById(req.params.id)
 
   if (!country) {
     res.status(400)
-    throw new Error('Goal not found')
+    throw new Error('Country not found')
   }
 
   // Check for user
