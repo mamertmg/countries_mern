@@ -22,9 +22,9 @@ function Header() {
       </div>
       <ul className='flex justify-between items-center'>
         {user ? (
-          <li className=''>
-            <button className='btn' onClick={onLogout}>
-              <FaSignOutAlt /> Logout
+          <li>
+            <button className='flex items-center ' onClick={onLogout}>
+              <FaSignOutAlt className='mr-2' /> Logout
             </button>
           </li>
         ) : (

@@ -18,6 +18,7 @@
     "nodemon": "^2.0.15"
   },
   "dependencies": {
+    "@react-google-maps/api": "^2.10.2",
     "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",

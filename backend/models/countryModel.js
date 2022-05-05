@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 
-const CountrySchema = new Schema({
-  user: {
+const CountrySchema = new mongoose.Schema({
+  user:{
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'User',
@@ -17,16 +16,14 @@ const CountrySchema = new Schema({
     type: String,
   },
   population: {
-    type: Number,
+    type: String,
   },
   flag: {
-    type: String,
+    type: Object,
   },
   map:{
-    type: String,
+    type: Object,
   }
 });
 
-const Country = mongoose.model('Country', CountrySchema);
-
-module.exports = { Country };
+module.exports = mongoose.model("Country", CountrySchema);

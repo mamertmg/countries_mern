@@ -18,7 +18,7 @@ const getAll = asyncHandler(async (req, res) => {
 
   const countries = await Country.find({ user: req.user.id })
 
-  res.status(200).json(countries)
+  return res.status(200).json(countries)
 })
 
 // @desc    Save country
@@ -35,16 +35,16 @@ const saveCountry = asyncHandler(async (req, res) => {
   }
 
   const country = await Country.create({
-    user: req.user.id,
+    user: user,
     name: req.body.name,
     capital: req.body.capital,
     region: req.body.region,
     population: req.body.population,
-    flag: req.body.flag.png,
-    map: req.body.googleMaps
+    flag: req.body.flags,
+    map: req.body.maps
   })
 
-  res.status(200).json(country)
+  return res.status(201).json()
 })
 
 // @desc    Delete country
