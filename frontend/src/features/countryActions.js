@@ -2,7 +2,8 @@ import axios from 'axios'
 const DB_URL = '/api/countries/'
 
 //Get country from API
-const getCountry = async(country, token) =>{
+const getCountry = async(country) =>{
+
     try{
         const response = await axios.get(`https://restcountries.com/v3.1/name/${country}`)
         const res ={
@@ -13,7 +14,6 @@ const getCountry = async(country, token) =>{
           maps: response.data[0].maps,
           flags: response.data[0].flags
         }
-        saveCountry(res, token)
         return res
       } catch(error){
         console.log(error.response)
@@ -23,14 +23,15 @@ const getCountry = async(country, token) =>{
 
 //Save country in DB
 const saveCountry = async(country, token) =>{
+    const res = await getCountry(country)
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     }
-    const response = await axios.post(DB_URL, country, config)
+    const response = await axios.post(DB_URL, res, config)
 
-  return response.data
+    return response.data
 }
 
 //Get all countries from DB
@@ -40,7 +41,6 @@ const getAll = async(token) =>{
       Authorization: `Bearer ${token}`,
     },
   }
-
   const response = await axios.get(DB_URL, config)
 
   return response.data

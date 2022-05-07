@@ -1,14 +1,15 @@
 import React from 'react'
+import ImageCard from './ImageCard'
 
 function CountryCard(country) {
 
-    const {name, capital, region, population, flags} = country.country
+    const {name, capital, region, population, flag} = country.country
 
     return (
         <div className='rounded shadow-md compact side bg-base-100'>
                 <div className='p-2'>
                     <div  >
-                        <img className='w-14 h-10' src={flags.png} alt='flag' />
+                        <ImageCard props={flag.png}/>
                     </div>
                 </div>
                 <div className='p-2'>

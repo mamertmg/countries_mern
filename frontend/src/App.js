@@ -17,7 +17,7 @@ function App() {
     <React.Fragment>
       <Router>
         <div className='max-w-full h-screen my-auto text-center'>
-          <Header/>
+          <Header />
           <Routes>
             <Route path='/' element={<Dashboard />} />
             <Route path='/login' element={<Login />} />

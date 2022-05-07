@@ -79,7 +79,6 @@ export const countrySlice = createSlice({
           .addCase(getCountry.fulfilled, (state, action) => {
             state.isLoading = false
             state.isSuccess = true
-            state.countries.push(action.payload) 
           })
           .addCase(getCountry.rejected, (state, action) => {
             state.isLoading = false
@@ -88,10 +87,12 @@ export const countrySlice = createSlice({
           })
           .addCase(saveCountry.pending, (state) => {
             state.isLoading = true
+            state.isSuccess = false
           })
-          .addCase(saveCountry.fulfilled, (state) => {
+          .addCase(saveCountry.fulfilled, (state,action) => {
             state.isLoading = false
             state.isSuccess = true
+            state.countries =action.payload
           })
           .addCase(saveCountry.rejected, (state, action) => {
             state.isLoading = false
@@ -100,11 +101,12 @@ export const countrySlice = createSlice({
           })
           .addCase(getAll.pending, (state) => {
             state.isLoading = true
+            state.isSuccess = false
           })
           .addCase(getAll.fulfilled, (state, action) => {
             state.isLoading = false
             state.isSuccess = true
-            //state.countries = action.payload
+            state.countries =action.payload
           })
           .addCase(getAll.rejected, (state, action) => {
             state.isLoading = false
@@ -113,6 +115,7 @@ export const countrySlice = createSlice({
           })
           .addCase(deleteCountry.pending, (state) => {
             state.isLoading = true
+            state.isSuccess = false
           })
           .addCase(deleteCountry.fulfilled, (state, action) => {
             state.isLoading = false

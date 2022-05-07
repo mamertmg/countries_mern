@@ -16,7 +16,7 @@ function Header() {
   }
 
   return (
-    <header className='flex justify-between items-center p-5 mb-16 border-solid border-b-2'>
+    <header className='flex justify-between items-center p-3 mb-4 border-solid border-b-2'>
       <div className='logo'>
         <Link to='/'>Countries Track</Link>
       </div>

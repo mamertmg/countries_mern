@@ -1,11 +1,27 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, {useEffect} from 'react'
+import { useSelector , useDispatch} from 'react-redux'
+import {getAll, reset} from '../features/countrySlice'
 import CountryForm from '../components/CountryForm'
 import CountryList from '../components/CountryList'
 
 function Dashboard() {
 
-  const {countries}= useSelector((state) => state.countries)
+  const {countries, isError, message}= useSelector((state) => state.countries)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (isError) {
+      console.log(message)
+    }
+
+    dispatch(getAll())
+
+    return () => {
+      dispatch(reset())
+    }
+
+  }, [isError, message,dispatch])
 
   return (
     <React.Fragment>
@@ -14,7 +30,7 @@ function Dashboard() {
             <span className="text-active">Countries</span> 
           </h1>
           <h2 className="text-primary text-2xl font-light mt-6 font-ebas">
-            Track all your countries visited
+            Track all your countries
           </h2>
           <CountryForm/>
       </section>
