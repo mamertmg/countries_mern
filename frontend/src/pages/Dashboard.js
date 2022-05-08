@@ -1,18 +1,25 @@
 import React, {useEffect} from 'react'
 import { useSelector , useDispatch} from 'react-redux'
 import {getAll, reset} from '../features/countrySlice'
+import { useNavigate } from 'react-router-dom'
 import CountryForm from '../components/CountryForm'
 import CountryList from '../components/CountryList'
 
 function Dashboard() {
 
+  const { user } = useSelector((state) => state.auth)
   const {countries, isError, message}= useSelector((state) => state.countries)
 
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   useEffect(() => {
     if (isError) {
       console.log(message)
+    }
+
+    if (!user) {
+      navigate('/login')
     }
 
     dispatch(getAll())
@@ -21,7 +28,7 @@ function Dashboard() {
       dispatch(reset())
     }
 
-  }, [isError, message,dispatch])
+  }, [user, navigate, isError, message,dispatch])
 
   return (
     <React.Fragment>

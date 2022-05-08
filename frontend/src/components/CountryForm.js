@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {useDispatch} from 'react-redux'
-import {saveCountry, getAll, reset} from '../features/countrySlice'
+import {saveCountry, getAll} from '../features/countrySlice'
 
 function CountryForm() {
 
@@ -11,16 +11,11 @@ function CountryForm() {
   const onSubmit = (e) => {
     e.preventDefault()
     // Get country from API
-      dispatch(saveCountry(country))
+    dispatch(saveCountry(country))
         .unwrap()
-        .then(() => dispatch(getAll()))  
-      setCountry('')
-
-      return () => {
-        dispatch(reset())
-      }
+        .then(dispatch(getAll()))
+    setCountry('')
   }
-  
 
   return (
     <form onSubmit={onSubmit} className='flex m-5 p-2 w-full justify-center'>

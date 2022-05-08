@@ -12,13 +12,13 @@ function Header() {
   const onLogout = () => {
     dispatch(logout())
     dispatch(reset())
-    navigate('/')
+    navigate('/login')
   }
 
   return (
     <header className='flex justify-between items-center p-3 mb-4 border-solid border-b-2'>
       <div className='logo'>
-        <Link to='/'>Countries Track</Link>
+        <Link to='/'>Countries Tracker</Link>
       </div>
       <ul className='flex justify-between items-center'>
         {user ? (
